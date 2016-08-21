@@ -20,11 +20,12 @@ class PostgreSQLDBConn(object):
         print curs
         # Send it to PostGIS
         lat, lon = 40.66531,-111.83917
+        strTime = "2016-08-21T08:02:38.5588042-06:00"
         pt = Point(lat,lon)
-        curs.execute('CREATE TABLE IF NOT EXISTS uta_pts(geom geometry, name text)')
+        curs.execute('CREATE TABLE IF NOT EXISTS uta_pts(geom GEOMETRY, name TEXT, time TIMESTAMP WITH TIME ZONE)')
         conn.commit()  # save data
-
-        curs.execute('INSERT INTO uta_pts(geom, name) VALUES (ST_SetSRID(ST_MakePoint(%(lon)s, %(lat)s), 4326), %(name)s)',
-                     {'lon': str(lon), 'lat': str(lat), 'name': 'First point'})
+        #ST_MakePoint(longitude,latitude)
+        curs.execute('INSERT INTO uta_pts(geom, name,time) VALUES (ST_SetSRID(ST_MakePoint(%(lon)s, %(lat)s), 4326), %(name)s,%(time)s)',
+                     {'lon': str(lon), 'lat': str(lat), 'name': 'First point', 'time': strTime})
         conn.commit()  # save data
         
