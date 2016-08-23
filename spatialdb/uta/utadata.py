@@ -18,8 +18,8 @@ class UTATracker(object):
         Constructor
         '''
         self. __usertoken = usertoken
-    def getData(self):
-        url = "http://api.rideuta.com/SIRI/SIRI.svc/VehicleMonitor/ByRoute?route=220&onwardcalls=true&usertoken=" + self.__usertoken
+    def getDataByRoute(self,routeID):
+        url = "http://api.rideuta.com/SIRI/SIRI.svc/VehicleMonitor/ByRoute?route=%s&onwardcalls=true&usertoken=%s"%(routeID,self.__usertoken)
         print url
         
         s = urllib2.urlopen(url)

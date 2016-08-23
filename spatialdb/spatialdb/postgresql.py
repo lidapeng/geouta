@@ -5,7 +5,7 @@ Created on Aug 20, 2016
 '''
 import psycopg2
 from shapely.geometry import Point
-class PostgreSQLDBConn(object):
+class PostgreSQLDB(object):
     '''
     classdocs
     '''
